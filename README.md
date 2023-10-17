@@ -26,7 +26,6 @@ Sevidor Menina de UX.
 - [ ] O usuário não deve poder criar um curso com mesmo nome;
 - [ ] O usuário não deve poder criar um tipo de curso com mesmo nome;
 - [ ] Os usuários administradores podem criar, editar e deletar usuarios gestores/voluntarios/cursos/tipos de cursos/categoria do usuario;
-- [ ]
 - [ ] Os usuários gestores podem criar, editar e deletar usuarios voluntarios/cursos/tipos de cursos;
 - [ ] Os usuários voluntarios so pode editar as informação do seu perfil;
 - [ ] Os usuários voluntarios podem criar cursos;
