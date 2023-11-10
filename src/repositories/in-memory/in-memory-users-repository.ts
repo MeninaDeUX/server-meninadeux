@@ -25,4 +25,12 @@ export class InMenoryUsersRepository implements UsersRepository {
     this.data.push(user)
     return user
   }
+
+  async findMany(page: number) {
+    const users = this.data
+      .map(({ password_hash, ...rest }) => rest)
+      .slice((page - 1) * 20, page * 20)
+
+    return users
+  }
 }
