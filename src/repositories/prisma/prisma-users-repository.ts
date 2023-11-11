@@ -35,6 +35,12 @@ export class PrismaUsersRepository implements UsersRepository {
       },
     })
 
-    return users
+    const result = {
+      users,
+      countUsers: (page - 1) * 20,
+      numberPage: page,
+    }
+
+    return result
   }
 }

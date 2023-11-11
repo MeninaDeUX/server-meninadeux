@@ -29,14 +29,14 @@ describe('Get Users Profile Use Case', () => {
       page: 1,
     })
 
-    expect(result).toHaveLength(2)
-    expect(result).toEqual([
+    expect(result.users).toHaveLength(2)
+    expect(result.users).toEqual([
       expect.objectContaining({ name: 'user-01' }),
       expect.objectContaining({ name: 'user-02' }),
     ])
   })
 
-  it('should return an array with all users', async () => {
+  it('should return an array with all users in another page', async () => {
     for (let i = 1; i <= 23; i++) {
       await usersRepository.create({
         name: `user-${i}`,
@@ -49,11 +49,28 @@ describe('Get Users Profile Use Case', () => {
       page: 2,
     })
 
-    expect(result).toHaveLength(3)
-    expect(result).toEqual([
+    expect(result.users).toHaveLength(3)
+    expect(result.users).toEqual([
       expect.objectContaining({ name: 'user-21' }),
       expect.objectContaining({ name: 'user-22' }),
       expect.objectContaining({ name: 'user-23' }),
     ])
+  })
+
+  it('should return the countUsers e number of Page', async () => {
+    for (let i = 1; i <= 23; i++) {
+      await usersRepository.create({
+        name: `user-${i}`,
+        email: `user-${i}@example.com`,
+        password_hash: await hash('123456', 6),
+      })
+    }
+
+    const result = await sut.execute({
+      page: 2,
+    })
+
+    expect(result.countUsers).toEqual(20)
+    expect(result.numberPage).toEqual(2)
   })
 })

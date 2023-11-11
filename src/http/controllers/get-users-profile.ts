@@ -15,11 +15,7 @@ export async function getUsersProfile(
   try {
     const getUsersProfileUseCase = makeGetUsersUseCase()
     const result = await getUsersProfileUseCase.execute({ page })
-    return reply.status(200).send({
-      users: result,
-      countUsers: (page - 1) * 20,
-      numberPage: page,
-    })
+    return reply.status(200).send(result)
   } catch (error) {
     return reply.status(500).send(error)
   }

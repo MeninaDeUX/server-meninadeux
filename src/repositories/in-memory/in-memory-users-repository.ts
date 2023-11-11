@@ -31,6 +31,12 @@ export class InMenoryUsersRepository implements UsersRepository {
       .map(({ password_hash, ...rest }) => rest)
       .slice((page - 1) * 20, page * 20)
 
-    return users
+    const result = {
+      users,
+      countUsers: (page - 1) * 20,
+      numberPage: page,
+    }
+
+    return result
   }
 }
