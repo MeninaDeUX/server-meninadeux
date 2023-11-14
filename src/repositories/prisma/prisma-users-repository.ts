@@ -19,4 +19,28 @@ export class PrismaUsersRepository implements UsersRepository {
     })
     return user
   }
+
+  async findMany(page: number) {
+    const start = (page - 1) * 20
+    const end = page * 20
+
+    const users = await prisma.user.findMany({
+      skip: start,
+      take: end,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        created_at: true,
+      },
+    })
+
+    const result = {
+      users,
+      countUsers: (page - 1) * 20,
+      numberPage: page,
+    }
+
+    return result
+  }
 }

@@ -7,7 +7,7 @@ Sevidor Menina de UX.
 - [x] Deve ser possível se cadastrar;
 - [ ] Deve ser possível se autenticar;
 - [ ] Deve ser possível obter o perfil de um usuário;
-- [ ] Deve ser possível obter todos os perfils de usuários;
+- [x] Deve ser possível obter todos os perfils de usuários;
 - [ ] Deve ser possível modificar dados do perfil;
 - [ ] Deve ser possivel deletar um usuario;
 - [ ] Deve ser possível castrar um curso;
