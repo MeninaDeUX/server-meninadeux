@@ -18,9 +18,9 @@ export async function authenticate(
     const userRepository = new PrismaUsersRepository()
     const authenticateUseCase = new AuthenticateUseCase(userRepository)
 
-    await authenticateUseCase.execute(email, password)
+    const { user } = await authenticateUseCase.execute({ email, password })
 
-    return reply.status(200).send({ message: 'Authentication successful' })
+    return reply.status(200).send({ user })
   } catch (error) {
     return reply.status(401).send({ message: error })
   }
