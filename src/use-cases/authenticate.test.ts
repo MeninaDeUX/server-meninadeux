@@ -8,22 +8,23 @@ let usersRepository: InMenoryUsersRepository
 let sut: AuthenticateUseCase
 
 describe('Authenticate Use Case', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     usersRepository = new InMenoryUsersRepository()
     sut = new AuthenticateUseCase(usersRepository)
-  })
-  it('should be able to authenticate', async () => {
+
     const createUser = {
       email: 'lid.sarti@testeteste.com',
       password_hash: await hash('123456', 6),
       name: 'Lídia Sarti',
     }
-
     await usersRepository.create(createUser)
-    const { user } = await sut.execute({
+  })
+  it('should be able to authenticate', async () => {
+    const userCredentials = {
       email: 'lid.sarti@testeteste.com',
       password: '123456',
-    })
+    }
+    const { user } = await sut.execute(userCredentials)
     expect(user.id).toEqual(expect.any(String))
   })
 
