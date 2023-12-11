@@ -33,7 +33,9 @@ describe('Authenticate Use Case', () => {
       email: 'lid.teste@gmail.com',
       password: 'wrongpassword',
     }
-    await expect(sut.execute(user)).rejects.toThrow(new InvalidCredentials())
+    await expect(() => sut.execute(user)).rejects.toBeInstanceOf(
+      InvalidCredentials,
+    )
   })
 
   it('should not be able to authenticate with wrong user', async () => {
@@ -41,6 +43,8 @@ describe('Authenticate Use Case', () => {
       email: 'nonexistentuser@teste.com',
       password: 'wrongpassword',
     }
-    await expect(sut.execute(user)).rejects.toThrow(new InvalidCredentials())
+    await expect(() => sut.execute(user)).rejects.toBeInstanceOf(
+      InvalidCredentials,
+    )
   })
 })
