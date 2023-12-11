@@ -4,5 +4,5 @@ import { FastifyInstance } from 'fastify'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/users', register)
-  app.post('/users/login', authenticate)
+  app.post('/authenticate', authenticate)
 }
