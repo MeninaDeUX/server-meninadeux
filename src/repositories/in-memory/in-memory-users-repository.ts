@@ -4,6 +4,7 @@ import { randomUUID } from 'crypto'
 
 export class InMenoryUsersRepository implements UsersRepository {
   public data: User[] = []
+
   async findByEmail(email: string) {
     const user = this.data.find((item) => item.email === email)
 
@@ -24,6 +25,18 @@ export class InMenoryUsersRepository implements UsersRepository {
     }
     this.data.push(user)
     return user
+  }
+
+  async update(user: Prisma.UserUpdadeInput) {
+    const newUser = {
+      id: randomUUID(),
+      name: user.name,
+      password_hash: user.password_hash,
+      email: user.email,
+      created_at: new Date(),
+    }
+    this.data.push(newUser)
+    return newUser
   }
 
   async findMany(page: number) {
